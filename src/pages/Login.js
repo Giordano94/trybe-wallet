@@ -61,7 +61,7 @@ class Login extends Component {
             onClick={ this.handleCLick }
             disabled={ isDisabled }
           >
-            ENTRAR
+            Entrar
           </button>
         </form>
       </div>
