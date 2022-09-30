@@ -19,7 +19,7 @@ class Login extends Component {
       const { inputEmail, inputPassword } = this.state;
       const regex = /\S+@\S+\.\S+/;
       const validEmail = regex.test(inputEmail);
-      const validPassword = inputPassword.length > MAX_CHAR;
+      const validPassword = inputPassword.length >= MAX_CHAR;
       const enableButton = !(validEmail && validPassword);
       this.setState({ isDisabled: enableButton });
     });
