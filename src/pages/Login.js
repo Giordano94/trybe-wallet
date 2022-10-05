@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { getUserEmail } from '../redux/actions';
 
 class Login extends Component {
@@ -8,12 +9,11 @@ class Login extends Component {
     inputPassword: '',
     inputEmail: '',
     isDisabled: true,
+    redirect: false,
   };
 
   handleChange = ({ target }) => {
     const { name, value } = target;
-    // console.log(value);
-    // console.log(name);
     this.setState({ [name]: value }, () => {
       const MAX_CHAR = 6;
       const { inputEmail, inputPassword } = this.state;
@@ -27,16 +27,17 @@ class Login extends Component {
 
   handleCLick = (event) => {
     event.preventDefault();
-    const { history, dispatch } = this.props;
+    const { dispatch } = this.props;
     const { inputEmail } = this.state;
     dispatch(getUserEmail(inputEmail));
-    history.push('/carteira');
+    this.setState({ redirect: true });
   };
 
   render() {
-    const { isDisabled } = this.state;
+    const { isDisabled, redirect } = this.state;
     return (
       <div>
+        {redirect && <Redirect to="/carteira" />}
         <form>
           <label htmlFor="email-input">
             Email:
