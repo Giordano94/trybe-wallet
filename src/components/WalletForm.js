@@ -7,9 +7,9 @@ import Table from './Table';
 class WalletForm extends Component {
   state = {
     value: '',
-    currency: '',
-    method: '',
-    tag: '',
+    currency: 'USD',
+    method: 'Dinheiro',
+    tag: 'Alimentação',
     description: '',
     id: 0,
   };
@@ -33,9 +33,9 @@ class WalletForm extends Component {
     dispatch(getExpensesData({ ...this.state, exchangeRates: data }));
     this.setState({
       value: '',
-      currency: '',
-      method: '',
-      tag: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
       description: '',
       id: id + 1,
     });

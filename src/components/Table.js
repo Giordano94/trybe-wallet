@@ -22,7 +22,7 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            {expenses.map((expense) => (
+            {expenses?.map((expense) => (
               <tr key={ expense.id }>
                 <td>{expense.description}</td>
                 <td>{expense.tag}</td>
@@ -35,11 +35,15 @@ class Table extends Component {
                   )}
                 </td>
                 <td>
-                  {ParseFloat(
+                  {Number(
                     expense.value * expense.exchangeRates[expense.currency].ask,
                   ).toFixed(2)}
                 </td>
                 <td>Real</td>
+                <td>
+                  <button type="button">Editar</button>
+                  <button type="button">Excluir</button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -54,7 +58,7 @@ const mapStateToProps = (state) => ({
 });
 
 Table.propTypes = {
-  expenses: PropTypes.arrayOf(PropTypes.string).isRequired,
+  expenses: PropTypes.arrayOf().isRequired,
 };
 
 export default connect(mapStateToProps)(Table);
